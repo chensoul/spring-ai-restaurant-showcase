@@ -1,7 +1,16 @@
 spring:
   application:
     name: spring-ai-restaurant-showcase
+  main:
+    allow-bean-definition-overriding: true
   
+  # 数据源配置
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
   # OpenAI 配置
   ai:
     openai:
@@ -11,10 +20,15 @@ spring:
         options:
           model: gpt-5
           temperature: 1
+      embedding:
+        api-key: ${OPENAI_API_KEY}
+        base-url: https://api.openai.com/v1
+        # embedding models: text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small
+        model: text-embedding-3-small
 
     # Mistral AI 配置
     mistral-ai:
-      api-key: ${MISTRAL_AI_TOKEN:your-mistral-api-key}
+      api-key: ${MISTRAL_API_KEY:your-mistral-api-key}
       chat:
         options:
           model: mistral-large-latest
@@ -25,6 +39,20 @@ spring:
       chat:
         options:
           model: llama3.2
+
+# Actuator 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
 # 日志配置
 logging:

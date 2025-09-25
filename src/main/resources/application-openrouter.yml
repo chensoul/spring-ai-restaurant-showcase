@@ -8,4 +8,5 @@ spring:
         completions-path: /api/v1/chat/completions
         options:
           model: qwen/qwen3-coder:free
-
+      # 注意：OpenRouter 不支持 embedding，需要单独配置
+      # embedding 配置将使用默认的 OpenAI embedding 服务

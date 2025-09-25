@@ -23,7 +23,9 @@ public class ChatConfig {
      */
     @Bean
     public ChatMemory chatMemory() {
-        return MessageWindowChatMemory.builder().chatMemoryRepository(new InMemoryChatMemoryRepository()).build();
+        return MessageWindowChatMemory.builder()
+                .chatMemoryRepository(new InMemoryChatMemoryRepository())
+                .build();
     }
 
     /**

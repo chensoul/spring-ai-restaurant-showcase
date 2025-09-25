@@ -7,4 +7,3 @@ spring:
       chat:
         options:
           model: qwen-plus
-
