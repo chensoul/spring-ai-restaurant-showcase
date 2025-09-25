@@ -20,7 +20,7 @@
         <sonar.projectKey>spring-ai-restaurant-showcase</sonar.projectKey>
         <sonar.organization>chensoul</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <jacoco.version>0.8.12</jacoco.version>
+        <jacoco.version>0.8.13</jacoco.version>
     </properties>
 
     <dependencyManagement>
