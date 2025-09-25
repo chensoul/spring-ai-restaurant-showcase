@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: spring-ai-restaurant-showcase
+  
+  # OpenAI 配置
+  ai:
+    openai:
+      base-url: https://api.openai.com
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-5
+          temperature: 1
+
+    # Mistral AI 配置
+    mistral-ai:
+      api-key: ${MISTRAL_AI_TOKEN:your-mistral-api-key}
+      chat:
+        options:
+          model: mistral-large-latest
+
+    # Ollama 配置
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2
+
+# 日志配置
+logging:
+  level:
+    cc.chensoul.springai.restaurant: DEBUG
+    org.springframework.ai: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
