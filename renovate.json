@@ -4,6 +4,10 @@
     "config:recommended",
     ":dependencyDashboard"
   ],
+  "platformAutomerge": true,
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
   "packageRules": [
     {
       "matchUpdateTypes": [
@@ -12,7 +16,15 @@
         "pin",
         "digest"
       ],
-      "automerge": true
+      "automerge": true,
+      "automergeType": "pr",
+      "requiredStatusChecks": null
+    },
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false
     }
   ]
 }
