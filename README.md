@@ -13,3 +13,4 @@
 ## 文章目录
 
 - [基于 Spring AI 构建智能餐厅推荐系统：多模型集成的实践指南](https://blog.chensoul.cc/posts/2025/09/25/spring-ai-restaurant-showcase/)
+- [基于 Spring AI 构建智能餐厅推荐系统：RAG 技术实战](https://blog.chensoul.cc/posts/2025/09/26/spring-ai-restaurant-showcase-rag/)
