@@ -3,7 +3,11 @@ spring:
     name: spring-ai-restaurant-showcase
   main:
     allow-bean-definition-overriding: true
-  
+
+  docker:
+    compose:
+      enabled: true
+
   # 数据源配置
   datasource:
     driver-class-name: org.postgresql.Driver
