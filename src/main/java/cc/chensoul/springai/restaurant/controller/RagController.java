@@ -20,30 +20,12 @@ import java.util.Map;
 @RequestMapping("/api/rag")
 @RequiredArgsConstructor
 public class RagController {
-
     private final RagChatService ragChatService;
     private final DocumentService documentService;
 
     /**
-     * RAG 聊天接口
-     * @param message 用户消息
-     * @return AI 回答
-     */
-    @PostMapping("/chat")
-    public ResponseEntity<String> chatWithRag(@RequestBody String message) {
-        log.info("RAG 聊天请求: {}", message);
-        try {
-            String response = ragChatService.chatWithRag(message);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            log.error("RAG 聊天失败: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError()
-                    .body("处理请求时发生错误: " + e.getMessage());
-        }
-    }
-
-    /**
      * 加载文档到向量存储
+     *
      * @param request 包含文件路径的请求
      * @return 操作结果
      */
@@ -67,36 +49,32 @@ public class RagController {
     }
 
     /**
-     * 搜索相似文档
-     * @param request 包含查询文本和数量的请求
-     * @return 相似文档列表
+     * RAG 聊天接口
+     *
+     * @param message 用户消息
+     * @return AI 回答
      */
-    @PostMapping("/search")
-    public ResponseEntity<List<Document>> searchSimilar(@RequestBody Map<String, Object> request) {
-        String query = (String) request.get("query");
-        Integer topK = (Integer) request.getOrDefault("topK", 5);
-
-        if (query == null || query.trim().isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
-
+    @PostMapping("/chat")
+    public ResponseEntity<String> chatWithRag(@RequestBody String message) {
+        log.info("RAG 聊天请求: {}", message);
         try {
-            log.info("搜索相似文档: {}, topK: {}", query, topK);
-            List<Document> documents = documentService.searchSimilar(query, topK);
-            return ResponseEntity.ok(documents);
+            String response = ragChatService.chatWithRag(message);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            log.error("搜索文档失败: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError().build();
+            log.error("RAG 聊天失败: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError()
+                    .body("处理请求时发生错误: " + e.getMessage());
         }
     }
 
     /**
-     * 混合检索
+     * 向量相似性搜索
+     *
      * @param request 包含查询文本和数量的请求
      * @return 检索结果
      */
-    @PostMapping("/hybrid-search")
-    public ResponseEntity<List<Document>> hybridSearch(@RequestBody Map<String, Object> request) {
+    @PostMapping("/search")
+    public ResponseEntity<List<Document>> search(@RequestBody Map<String, Object> request) {
         String query = (String) request.get("query");
         Integer topK = (Integer) request.getOrDefault("topK", 5);
 
@@ -105,24 +83,26 @@ public class RagController {
         }
 
         try {
-            log.info("执行混合检索: {}, topK: {}", query, topK);
-            List<Document> documents = ragChatService.hybridSearch(query, topK);
+            log.info("执行向量相似性搜索: {}, topK: {}", query, topK);
+            List<Document> documents = ragChatService.searchSimilar(query, topK);
             return ResponseEntity.ok(documents);
         } catch (Exception e) {
-            log.error("混合检索失败: {}", e.getMessage(), e);
+            log.error("向量相似性搜索失败: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError().build();
         }
     }
 
     /**
-     * 带上下文管理的聊天
-     * @param request 包含消息和最大token数的请求
+     * 个性化 RAG 聊天
+     *
+     * @param request 包含消息和用户偏好的请求
      * @return AI 回答
      */
-    @PostMapping("/chat-with-context")
-    public ResponseEntity<String> chatWithContext(@RequestBody Map<String, Object> request) {
+    @PostMapping("/chat-personalized")
+    public ResponseEntity<String> chatWithPersonalizedRag(@RequestBody Map<String, Object> request) {
         String message = (String) request.get("message");
-        Integer maxTokens = (Integer) request.getOrDefault("maxTokens", 2000);
+        @SuppressWarnings("unchecked")
+        Map<String, Object> userPreferences = (Map<String, Object>) request.getOrDefault("userPreferences", Map.of());
 
         if (message == null || message.trim().isEmpty()) {
             return ResponseEntity.badRequest()
@@ -130,30 +110,13 @@ public class RagController {
         }
 
         try {
-            log.info("带上下文管理的聊天: {}, maxTokens: {}", message, maxTokens);
-            String response = ragChatService.chatWithContextManagement(message, maxTokens);
+            log.info("个性化 RAG 聊天请求: {}, 偏好: {}", message, userPreferences);
+            String response = ragChatService.chatWithPersonalizedRag(message, userPreferences);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            log.error("带上下文管理的聊天失败: {}", e.getMessage(), e);
+            log.error("个性化 RAG 聊天失败: {}", e.getMessage(), e);
             return ResponseEntity.internalServerError()
                     .body("处理请求时发生错误: " + e.getMessage());
-        }
-    }
-
-    /**
-     * 清空向量存储
-     * @return 操作结果
-     */
-    @DeleteMapping("/clear")
-    public ResponseEntity<Map<String, String>> clearVectorStore() {
-        try {
-            log.info("清空向量存储");
-            documentService.clearVectorStore();
-            return ResponseEntity.ok(Map.of("message", "向量存储已清空"));
-        } catch (Exception e) {
-            log.error("清空向量存储失败: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError()
-                    .body(Map.of("error", "清空向量存储失败: " + e.getMessage()));
         }
     }
 }

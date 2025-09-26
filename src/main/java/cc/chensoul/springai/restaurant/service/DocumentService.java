@@ -6,7 +6,6 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.reader.markdown.MarkdownDocumentReader;
 import org.springframework.ai.reader.markdown.config.MarkdownDocumentReaderConfig;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
-import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -57,27 +56,4 @@ public class DocumentService {
         log.info("成功加载 {} 个文档片段到向量存储", splitDocuments.size());
     }
 
-    /**
-     * 搜索相似文档
-     *
-     * @param query 查询文本
-     * @param topK  返回结果数量
-     * @return 相似文档列表
-     */
-    public List<Document> searchSimilar(String query, int topK) {
-        log.info("搜索相似文档: {}, topK: {}", query, topK);
-        return vectorStore.similaritySearch(SearchRequest.builder().query(query).topK(topK).build());
-    }
-
-    /**
-     * 清空向量存储
-     */
-    public void clearVectorStore() {
-        try {
-            vectorStore.delete(List.of());
-            log.info("向量存储已清空");
-        } catch (Exception e) {
-            log.error("清空向量存储失败: {}", e.getMessage(), e);
-        }
-    }
 }
