@@ -6,5 +6,7 @@
   ],
   "platformAutomerge": true,
   "automerge": true,
-  "automergeType": "pr"
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "requiredStatusChecks": null
 }
