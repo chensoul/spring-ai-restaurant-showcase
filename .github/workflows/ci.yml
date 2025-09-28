@@ -7,7 +7,7 @@ on:
     branches: [ main, develop ]
 
 env:
-  JAVA_VERSION: '21'
+  JAVA_VERSION: '25'
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
