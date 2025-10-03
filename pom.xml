@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>25</java.version>
-        <spring-ai.version>1.1.0-M2</spring-ai.version>
+        <spring-ai.version>1.1.0-M3</spring-ai.version>
 
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
