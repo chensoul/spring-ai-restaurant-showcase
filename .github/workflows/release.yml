@@ -12,7 +12,6 @@ jobs:
   release:
     name: Release to Maven Central
     runs-on: ubuntu-latest
-    if: github.repository == 'chensoul/spring-ai-restaurant-showcase'
     
     steps:
     - name: Checkout code
@@ -61,6 +60,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: target/spring-ai-restaurant-showcase-${{ github.ref_name }}.jar
-        asset_name: spring-ai-restaurant-showcase-${{ github.ref_name }}.jar
+        asset_path: target/docker-ai-app-${{ github.ref_name }}.jar
+        asset_name: docker-ai-app-${{ github.ref_name }}.jar
         asset_content_type: application/java-archive
