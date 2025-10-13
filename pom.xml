@@ -15,7 +15,7 @@
     <description>Spring AI Chat Model Showcase with multiple AI providers</description>
 
     <properties>
-        <java.version>25</java.version>
+        <java.version>17</java.version>
         <spring-ai.version>1.0.3</spring-ai.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
