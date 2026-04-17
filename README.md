@@ -1,9 +1,9 @@
 # Spring AI 智能餐厅推荐系统
 
-[![GitHub release](https://img.shields.io/github/v/release/chensoul/spring-ai-restaurant-showcase)](https://github.com/chensoul/spring-ai-restaurant-showcase/releases)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chensoul/spring-ai-restaurant-showcase/ci.yml?branch=main)](https://github.com/chensoul/spring-ai-restaurant-showcase/actions/workflows/test.yml)
+[![GitHub release](https://img.shields.io/github/v/release/chensoul/spring-ai-restaurant-showcase)](https://github.com/zhijunio/spring-ai-restaurant-showcase/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/chensoul/spring-ai-restaurant-showcase/ci.yml?branch=main)](https://github.com/zhijunio/spring-ai-restaurant-showcase/actions/workflows/test.yml)
 [![License](https://img.shields.io/github/license/chensoul/spring-ai-restaurant-showcase)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/chensoul/spring-ai-restaurant-showcase)](https://github.com/chensoul/spring-ai-restaurant-showcase/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/chensoul/spring-ai-restaurant-showcase)](https://github.com/zhijunio/spring-ai-restaurant-showcase/stargazers)
 
 这是一个基于 Spring AI 框架构建的智能餐厅推荐系统，展示了如何使用不同的 AI 模型提供商来构建智能化的餐饮推荐应用。
 
