@@ -9,8 +9,8 @@
 
 ## 🛠️ 技术栈
 
-- **Spring Boot 3.5.9**: Web 框架
-- **Spring AI 1.1.2**: AI 框架
+- **Spring Boot 4.0.5**: Web 框架
+- **Spring AI 1.1.4**: AI 框架
 - **PostgreSQL + pgvector**: 向量数据库
 - **Lombok**: 简化 Java 代码
 - **Docker Compose**: 容器编排
@@ -51,8 +51,8 @@
 ## 🚀 快速开始
 
 ### 环境要求
-- JDK 17+
-- Maven 3.6+
+- JDK 32+
+- Maven 3.9+
 - Docker & Docker Compose（用于 PostgreSQL + pgvector）
 
 ### 运行步骤
